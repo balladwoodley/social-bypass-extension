@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Social Wall Bypass</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --surface: #13131a; --border: #1e1e2e;
+      --accent: #7c3aed; --text: #f1f0ff; --muted: #6b6b8a;
+      --green: #22c55e; --yellow: #eab308;
+    }
+    body { width: 300px; background: var(--bg); font-family: 'Syne', sans-serif; color: var(--text); overflow: hidden; }
+
+    .header {
+      background: linear-gradient(135deg, #1a0a2e 0%, #0a0a1a 60%);
+      padding: 16px 18px 12px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+    }
+    .header::before { content:''; position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:radial-gradient(circle,rgba(124,58,237,.3) 0%,transparent 70%); border-radius:50%; }
+    .logo-row { display:flex; align-items:center; gap:10px; position:relative; z-index:1; }
+    .logo-icon { width:30px; height:30px; background:linear-gradient(135deg,var(--accent),#06b6d4); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:15px; }
+    .logo-text { font-size:14px; font-weight:800; letter-spacing:-.3px; background:linear-gradient(90deg,#c4b5fd,#67e8f9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .status-pill { margin-left:auto; background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.3); color:var(--green); font-family:'DM Mono',monospace; font-size:10px; padding:2px 7px; border-radius:20px; }
+    .tagline { margin-top:6px; font-size:10px; color:var(--muted); position:relative; z-index:1; }
+
+    /* Login-detection notice */
+    .detect-bar {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(234,179,8,.08); border-bottom: 1px solid rgba(234,179,8,.2);
+      padding: 7px 18px; font-size: 10px; color: #fde68a;
+    }
+    .detect-dot { width:6px; height:6px; border-radius:50%; background:var(--yellow); flex-shrink:0; }
+
+    .section { padding: 12px 18px; }
+    .section-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:9px; }
+
+    .site-list { display:flex; flex-direction:column; gap:5px; }
+    .site-row { display:flex; align-items:center; gap:9px; background:var(--surface); border:1px solid var(--border); border-radius:9px; padding:8px 11px; }
+    .site-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+    .site-name { font-size:12px; font-weight:600; flex:1; }
+    .site-domain { font-family:'DM Mono',monospace; font-size:9px; color:var(--muted); }
+    .badge { font-family:'DM Mono',monospace; font-size:9px; padding:2px 6px; border-radius:4px; }
+
+    .divider { height:1px; background:var(--border); margin:0 18px; }
+
+    .how-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+    .how-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:8px 9px; }
+    .how-icon { font-size:13px; margin-bottom:3px; }
+    .how-title { font-size:10px; font-weight:700; margin-bottom:2px; }
+    .how-desc { font-size:9px; color:var(--muted); line-height:1.4; }
+
+    .footer { padding:9px 18px 13px; display:flex; align-items:center; justify-content:space-between; }
+    .footer-note { font-size:9px; color:var(--muted); }
+    .version { font-family:'DM Mono',monospace; font-size:9px; color:#3d3d5c; }
+    .reload-btn { background:linear-gradient(135deg,var(--accent),#9333ea); color:white; border:none; border-radius:6px; font-family:'Syne',sans-serif; font-size:10px; font-weight:700; padding:5px 11px; cursor:pointer; transition:opacity .15s; }
+    .reload-btn:hover { opacity:.85; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-icon">🔓</div>
+      <span class="logo-text">Social Wall Bypass</span>
+      <span class="status-pill">ACTIVE</span>
+    </div>
+    <div class="tagline">Browse freely — no login required · skips if you're logged in</div>
+  </div>
+
+  <div class="detect-bar">
+    <div class="detect-dot"></div>
+    Login detection active — extension disables itself on logged-in sessions
+  </div>
+
+  <div class="section">
+    <div class="section-label">Protected Sites</div>
+    <div class="site-list">
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#e1306c;box-shadow:0 0 5px #e1306c55"></div>
+        <div><div class="site-name">Instagram</div><div class="site-domain">instagram.com</div></div>
+        <span class="badge" style="background:rgba(225,48,108,.15);color:#e1306c;border:1px solid rgba(225,48,108,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#1d9bf0;box-shadow:0 0 5px #1d9bf055"></div>
+        <div><div class="site-name">Twitter / X</div><div class="site-domain">twitter.com · x.com</div></div>
+        <span class="badge" style="background:rgba(29,155,240,.15);color:#1d9bf0;border:1px solid rgba(29,155,240,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#1877f2;box-shadow:0 0 5px #1877f255"></div>
+        <div><div class="site-name">Facebook</div><div class="site-domain">facebook.com</div></div>
+        <span class="badge" style="background:rgba(24,119,242,.15);color:#1877f2;border:1px solid rgba(24,119,242,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#ff0050;box-shadow:0 0 5px #ff005055"></div>
+        <div><div class="site-name">TikTok</div><div class="site-domain">tiktok.com</div></div>
+        <span class="badge" style="background:rgba(255,0,80,.15);color:#ff0050;border:1px solid rgba(255,0,80,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#ff4500;box-shadow:0 0 5px #ff450055"></div>
+        <div><div class="site-name">Reddit</div><div class="site-domain">reddit.com</div></div>
+        <span class="badge" style="background:rgba(255,69,0,.15);color:#ff4500;border:1px solid rgba(255,69,0,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#0a66c2;box-shadow:0 0 5px #0a66c255"></div>
+        <div><div class="site-name">LinkedIn</div><div class="site-domain">linkedin.com</div></div>
+        <span class="badge" style="background:rgba(10,102,194,.15);color:#0a66c2;border:1px solid rgba(10,102,194,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#e60023;box-shadow:0 0 5px #e6002355"></div>
+        <div><div class="site-name">Pinterest</div><div class="site-domain">pinterest.com</div></div>
+        <span class="badge" style="background:rgba(230,0,35,.15);color:#e60023;border:1px solid rgba(230,0,35,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#fffc00;box-shadow:0 0 5px #fffc0055"></div>
+        <div><div class="site-name">Snapchat</div><div class="site-domain">snapchat.com</div></div>
+        <span class="badge" style="background:rgba(255,252,0,.15);color:#d4d000;border:1px solid rgba(255,252,0,.3)">ON</span>
+      </div>
+
+      <div class="site-row">
+        <div class="site-dot" style="background:#ff0000;box-shadow:0 0 5px #ff000055"></div>
+        <div><div class="site-name">YouTube</div><div class="site-domain">youtube.com</div></div>
+        <span class="badge" style="background:rgba(255,0,0,.15);color:#ff0000;border:1px solid rgba(255,0,0,.3)">ON</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">How it works</div>
+    <div class="how-grid">
+      <div class="how-card"><div class="how-icon">🔍</div><div class="how-title">Login Detection</div><div class="how-desc">Checks cookies + DOM — skips if already logged in</div></div>
+      <div class="how-card"><div class="how-icon">🪄</div><div class="how-title">CSS Injection</div><div class="how-desc">Hides walls before the page renders</div></div>
+      <div class="how-card"><div class="how-icon">👁</div><div class="how-title">DOM Watcher</div><div class="how-desc">Removes modals as they're dynamically added</div></div>
+      <div class="how-card"><div class="how-icon">⚡</div><div class="how-title">Smart Removal</div><div class="how-desc">Keeps like/comment prompts — only kills login walls</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <div>
+      <div class="footer-note">Reload the page to apply changes</div>
+      <div class="version">v1.3.0</div>
+    </div>
+    <button class="reload-btn" id="reloadBtn">↺ Reload Tab</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

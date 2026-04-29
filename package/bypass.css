@@ -1,0 +1,74 @@
+/* ============================================================
+   Social Wall Bypass v1.3 — bypass.css
+   Injected at document_start to suppress login walls before paint
+   ============================================================ */
+
+/* ── INSTAGRAM ─────────────────────────────────────────────── */
+[data-testid="login-explore-tooltip"],
+#loginForm {
+  display: none !important;
+}
+/* Catches login modal by presence of password field */
+body > div > div:has(input[name="password"]),
+body > div:has(input[name="password"]),
+main > div:has(input[name="password"]) {
+  display: none !important;
+}
+
+/* ── TWITTER / X ────────────────────────────────────────────── */
+[data-testid="BottomBar"],
+[data-testid="LoginForm"],
+[data-testid="SignupForm"],
+[data-testid="mask"] {
+  display: none !important;
+}
+
+/* ── FACEBOOK ───────────────────────────────────────────────── */
+[data-pagelet="GrowthEduInterstitial"],
+[data-testid="royal_registration_dialog"],
+[data-testid="login-signup-form"],
+[data-cookiebanner] {
+  display: none !important;
+}
+
+/* ── TIKTOK ─────────────────────────────────────────────────── */
+[data-e2e="login-modal"] {
+  display: none !important;
+}
+
+/* ── REDDIT ─────────────────────────────────────────────────── */
+[data-testid="login-modal"],
+shreddit-signup-drawer,
+shreddit-login-drawer,
+shreddit-age-gate-modal,
+.login-required-modal {
+  display: none !important;
+}
+
+/* ── LINKEDIN ───────────────────────────────────────────────── */
+.authwall-join-form,
+.join-form,
+#join-form,
+.signup-modal {
+  display: none !important;
+}
+
+/* ── PINTEREST ──────────────────────────────────────────────── */
+[data-test-id="signup-wall"],
+[data-test-id="login-signup-wall"] {
+  display: none !important;
+}
+
+/* ── YOUTUBE ────────────────────────────────────────────────── */
+ytd-enforcement-message-view-model,
+ytd-signin-promo-renderer,
+ytd-mealbar-promo-renderer {
+  display: none !important;
+}
+
+/* ── GLOBAL — restore scroll ────────────────────────────────── */
+html, body {
+  overflow: auto !important;
+  height: auto !important;
+  position: static !important;
+}
